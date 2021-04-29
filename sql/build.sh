@@ -1,0 +1,10 @@
+psql yachts <./dropData.sql
+psql yachts <./createTables.sql
+psql yachts <./createIndexes.sql
+psql yachts <./createViews.sql
+psql yachts <./createTriggers.sql
+psql yachts <./createIssueInvoicesTrigger.sql
+psql yachts <./createFunctions.sql
+psql yachts <./createPayInvoicesFunction.sql
+psql yachts <./createAppUser.sql
+psql yachts <./insertInitial.sql

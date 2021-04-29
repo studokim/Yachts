@@ -34,6 +34,11 @@ public:
         server->Get("/", [](const Request &req, Response &res) {
             res.set_content("<h>Welcome to Bluebird!</h>", "text/html");
         });
+
+        server->Get("/table", [this](const Request &req, Response &res) {
+            auto result = db->SelectAll("table", 5, true);
+            res.set_content(result, "application/json");
+        });
     }
 
     void RegisterGetCollectionHandlers()
@@ -94,7 +99,7 @@ public:
             auto percent = req.get_param_value("percent");
             auto query = std::string("select updatepricesfunction(").append(percent).append(") as Result");
             auto result = db->CallFunction(query);
-            res.set_content(result, "text/plain");
+            res.set_content(result, "application/json");
         });
 
         server->Patch("/pay", [this](const Request &req, Response &res) {
@@ -106,8 +111,7 @@ public:
                     .append(amount).append(", \'")
                     .append(method).append("\') as Result");
             auto result = db->CallFunction(query);
-            res.set_header("result", "ok");
-            res.set_content(result, "text/plain");
+            res.set_content(result, "application/json");
         });
     }
 
