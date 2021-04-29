@@ -9,9 +9,6 @@ int main()
 {
     try
     {
-        //pqxx::connection C("host=localhost port=5432 user=yachtsapp password=pwd dbname=yachts connect_timeout=10");
-        //pqxx::connection C("postgresql://yachtsapp:pwd@localhost:5432/yachts?connect_timeout=10");
-
         HTTPServer* srv = new HTTPServer("192.168.0.1", "5431", new PGClient("yachtsapp", "pwd"));
 
         std::thread th_srv(&HTTPServer::Start, srv, true);
