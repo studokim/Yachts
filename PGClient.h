@@ -111,7 +111,7 @@ public:
     {
         std::cout << "Disconnected from " << conn->dbname() << '.' << std::endl;
         if (conn != nullptr && conn->is_open()) {
-            conn->disconnect();
+            conn->close();
             delete conn;
             conn = nullptr;
         }
